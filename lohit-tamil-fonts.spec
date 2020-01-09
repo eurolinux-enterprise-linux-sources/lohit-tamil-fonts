@@ -3,7 +3,7 @@
 
 Name:           %{fontname}-fonts
 Version:        2.4.5
-Release:        4%{?dist}
+Release:        5%{?dist}
 Summary:        Free Tamil font
 
 Group:          User Interface/X
@@ -17,6 +17,7 @@ BuildRequires:  fontpackages-devel
 Requires:       fontpackages-filesystem
 Patch1: bug-549319-578039.patch
 Patch2: bug-629813.patch
+Patch3: bug-691295.patch
 Obsoletes: lohit-fonts-common < %{version}-%{release}
 
 %description
@@ -26,7 +27,8 @@ This package provides a free Tamil truetype/opentype font.
 %prep
 %setup -q -n %{fontname}-%{version}
 %patch1 -p1 -b .1-fix-font-conf
-%patch2 -p1 -b .1-fixed-asterisk-character
+%patch2 -p1 -b .2-fixed-asterisk-character
+%patch3 -p1 -b .3-added-rupee-symbol
 
 %build
 make
@@ -56,6 +58,9 @@ rm -fr %{buildroot}
 
 
 %changelog
+* Wed Jun 06 2011 Pravin Satpute <psatpute@redhat.com> - 2.4.5-5
+- Resolves: bug 691295
+
 * Fri Jan 01 2011 Pravin Satpute <psatpute@redhat.com> - 2.4.5-4
 - Resolves: bug 629813
 
